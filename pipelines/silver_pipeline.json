@@ -6,7 +6,14 @@
             {
                 "name": "Orders",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Reviews",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -22,7 +29,14 @@
             {
                 "name": "Order items",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Sellers",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -54,7 +68,14 @@
             {
                 "name": "Customers",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Products",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -70,7 +91,14 @@
             {
                 "name": "Geolocation",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Order items",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -86,7 +114,14 @@
             {
                 "name": "Order payments",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Orders",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -102,7 +137,14 @@
             {
                 "name": "Sellers",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Customers",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -118,7 +160,14 @@
             {
                 "name": "Product translation",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Order payments",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -134,7 +183,14 @@
             {
                 "name": "Reviews",
                 "type": "TridentNotebook",
-                "dependsOn": [],
+                "dependsOn": [
+                    {
+                        "activity": "Geolocation",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
                 "policy": {
                     "timeout": "0.12:00:00",
                     "retry": 0,
@@ -149,6 +205,6 @@
             }
         ],
         "lastModifiedByObjectId": "7cd0c1e7-9edf-43ac-8cb7-362ebf309a53",
-        "lastPublishTime": "2026-10-07T21:32:53Z"
+        "lastPublishTime": "2026-10-14T20:52:08Z"
     }
 }
