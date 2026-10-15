@@ -1,0 +1,118 @@
+{
+    "name": "PL_Gold_Load",
+    "objectId": "d156b7e6-4081-4916-8e58-e6e4e80b77db",
+    "properties": {
+        "activities": [
+            {
+                "name": "Gold fact sales",
+                "type": "TridentNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "717a3ff9-2eff-4a6e-9370-0d76827ebe28",
+                    "workspaceId": "229c6a72-78e1-40f4-96ed-942bb0d1cd08"
+                }
+            },
+            {
+                "name": "Customer",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Gold fact sales",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "55f6c158-37a1-4e80-af27-99111b696725",
+                    "workspaceId": "229c6a72-78e1-40f4-96ed-942bb0d1cd08"
+                }
+            },
+            {
+                "name": "Seller",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Category",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "42e08e05-8262-42aa-b9b7-8cfaf7923a08",
+                    "workspaceId": "229c6a72-78e1-40f4-96ed-942bb0d1cd08"
+                }
+            },
+            {
+                "name": "Category",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Customer",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "e4b5fab4-d815-49f7-ba42-6221abf5438f",
+                    "workspaceId": "229c6a72-78e1-40f4-96ed-942bb0d1cd08"
+                }
+            },
+            {
+                "name": "Review",
+                "type": "TridentNotebook",
+                "dependsOn": [
+                    {
+                        "activity": "Seller",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "notebookId": "0d55ccff-7cad-42c4-91f9-98242859382a",
+                    "workspaceId": "229c6a72-78e1-40f4-96ed-942bb0d1cd08"
+                }
+            }
+        ],
+        "lastModifiedByObjectId": "7cd0c1e7-9edf-43ac-8cb7-362ebf309a53",
+        "lastPublishTime": "2026-10-14T20:29:39Z"
+    }
+}

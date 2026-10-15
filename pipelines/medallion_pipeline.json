@@ -1,0 +1,59 @@
+{
+    "name": "PL_Medallion_ETL",
+    "objectId": "63f3cfae-8c92-46fd-a009-a01044b9c14f",
+    "properties": {
+        "activities": [
+            {
+                "name": "Silver load",
+                "type": "InvokePipeline",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "waitOnCompletion": true,
+                    "operationType": "InvokeFabricPipeline",
+                    "pipelineId": "3ac54a1b-599a-4209-ae0f-24563620e727",
+                    "workspaceId": "229c6a72-78e1-40f4-96ed-942bb0d1cd08"
+                },
+                "externalReferences": {
+                    "connection": "bc8fb958-21bb-4592-931f-0fa037d68d0c"
+                }
+            },
+            {
+                "name": "Gold load",
+                "type": "InvokePipeline",
+                "dependsOn": [
+                    {
+                        "activity": "Silver load",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "typeProperties": {
+                    "waitOnCompletion": true,
+                    "operationType": "InvokeFabricPipeline",
+                    "pipelineId": "d156b7e6-4081-4916-8e58-e6e4e80b77db",
+                    "workspaceId": "229c6a72-78e1-40f4-96ed-942bb0d1cd08"
+                },
+                "externalReferences": {
+                    "connection": "bc8fb958-21bb-4592-931f-0fa037d68d0c"
+                }
+            }
+        ],
+        "lastModifiedByObjectId": "7cd0c1e7-9edf-43ac-8cb7-362ebf309a53",
+        "lastPublishTime": "2026-10-14T20:30:34Z"
+    }
+}
